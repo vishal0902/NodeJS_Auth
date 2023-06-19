@@ -1,5 +1,7 @@
 const path = require('path')
 const express = require('express');
+const cookieParser = require('cookie-parser')
+
 const app = express();
 
 const {connectDB} = require('./connectDB');
@@ -15,6 +17,8 @@ connectDB(DB_URL).then(()=>console.log('DB Connected.'))
 
 //middlewares
 app.use(express.json())
+app.use(express.urlencoded({extended:false}))
+app.use(cookieParser())
 
 
 //templating engine
@@ -26,7 +30,7 @@ app.get('/', authUser, (req,res)=>{
 })
 
 
-app.use('/signup', userRouter);
+app.use('/auth', userRouter);
 
 
 

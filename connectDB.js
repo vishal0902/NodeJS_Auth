@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 
 async function connectDB (url) {
-    mongoose.connect(`${url}/users-db`)
+    mongoose.connect(url)
 }
 
 module.exports = {connectDB}
