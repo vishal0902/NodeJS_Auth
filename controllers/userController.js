@@ -11,7 +11,7 @@ async function handleCreateUser (req,res) {
 
 
     const doc = await User.create({name, email, password, token})
-    res.cookie ("token", token)
+    res.cookie ("token", token,{maxAge: 10000})
     res.redirect('/')
 }
 
@@ -31,7 +31,7 @@ async function handleLoginUser (req,res) {
     console.log(token)
     doc.token = token
     doc.save()
-    res.cookie('token',token)
+    res.cookie('token',token,{maxAge: 10000})
     res.redirect('/')
     // res.render(path.resolve('views/home'))
 }
